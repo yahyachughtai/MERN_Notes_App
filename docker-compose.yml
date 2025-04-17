@@ -11,7 +11,7 @@ services:
     environment:
       - VITE_APP_BASE_URL=${VITE_APP_BASE_URL}
     networks:
-      - app-network
+      - net1
 
   backend:
     build:
@@ -24,7 +24,7 @@ services:
     environment:
       - dbURL=mongodb+srv://i221413:9wa78ksWFXUVRVbn@movierecomendation.sbai1.mongodb.net/
     networks:
-      - app-network
+      - net1
 
   mongo:
     image: mongo:latest
@@ -33,11 +33,14 @@ services:
     volumes:
       - mongo-data:/data/db
     networks:
-      - app-network
+      - net1
+      - net2
 
 volumes:
   mongo-data:
 
 networks:
-  app-network:
-    driver: bridge
+  net1:
+    external: true
+  net2:
+    external: true
