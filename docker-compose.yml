@@ -15,14 +15,14 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ./server
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=${MONGO_URI}
+      - dbURL=mongodb+srv://i221413:9wa78ksWFXUVRVbn@movierecomendation.sbai1.mongodb.net/
     networks:
       - app-network
 
